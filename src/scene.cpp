@@ -34,8 +34,8 @@ void Scene::render()
 								+ cam.imageDist*cam.lookAt
 								- imageHalfWidth * cam.right
 								- imageHalfHeight * cam.up
-								+ (i + 0.5) / outputImage.getNbPixelsX() * 2 * imageHalfWidth * cam.right
-								+ (j + 0.5) / outputImage.getNbPixelsY() * 2 * imageHalfHeight * cam.up;
+                                + (i + 0.5f) / outputImage.getNbPixelsX() * 2 * imageHalfWidth * cam.right
+                                + (j + 0.5f) / outputImage.getNbPixelsY() * 2 * imageHalfHeight * cam.up;
             Ray ray(cam.eye, normalize(pixelCenter-cam.eye), 0);
 
             outputImage.set(i, j, getIntersectionColor(ray));

@@ -12,16 +12,16 @@ OBJECTS_DIR = obj/
 
 
 INCLUDEPATH += \
-    libs/glm \
-    libs/lodepng
+    include/glm \
+    include/lodepng
 
 DEPENDPATH += \
-    libs/glm \
-    libs/lodepng
+    include/glm \
+    include/lodepng
 
 
 HEADERS += \
-    libs/lodepng/lodepng.h \
+    include/lodepng/lodepng.h \
     src/main.h \
     src/material.h \
     src/scene.h \
@@ -35,7 +35,7 @@ HEADERS += \
     
 
 SOURCES += \
-    libs/lodepng/lodepng.cpp \
+    include/lodepng/lodepng.cpp \
     src/main.cpp \
     src/material.cpp \
     src/scene.cpp \

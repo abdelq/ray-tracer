@@ -3,6 +3,8 @@
 #include <set>
 
 #include "main.h"
+
+#define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/transform2.hpp"
 #include "sceneLoader.h"
