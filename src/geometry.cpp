@@ -6,10 +6,9 @@ using namespace std;
 
 bool Sphere::closestIntersection(Ray ray, Intersection& inter)
 {
-	// À COMPLÉTER
-	return false;
+    // À COMPLÉTER
+    return false;
 }
-
 
 bool Plane::closestIntersection(Ray ray, Intersection& inter)
 {
@@ -35,21 +34,20 @@ bool Plane::closestIntersection(Ray ray, Intersection& inter)
     return minT!=INFINITY;
 }
 
-
 bool Cube::closestIntersection(Ray ray, Intersection& inter)
 {
-	// À COMPLÉTER
-	return false;
+    // À COMPLÉTER
+    return false;
 }
 
 bool Cylinder::closestIntersection(Ray ray, Intersection& inter)
 {
-	// À COMPLÉTER
-	return false;
+    // À COMPLÉTER
+    return false;
 }
 
 bool Cone::closestIntersection(Ray ray, Intersection& inter)
 {
-	// À COMPLÉTER
-	return false;
+    // À COMPLÉTER
+    return false;
 }

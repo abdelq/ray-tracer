@@ -28,13 +28,12 @@ public:
     std::vector<Light*> lights;
     std::map<std::string, Texture*> textures;
     std::map<std::string, Material*> materials;
-    
-	// image a remplir, qui sera ensuite sauvegardée au format png.
+
+    // image a remplir, qui sera ensuite sauvegardée au format png.
     Image outputImage;
 
-    void render();    
+    void render();
     void saveToFile(std::string filename);
     decimal getClosestIntersection(Ray ray, Intersection& closestIntersection);
     glm::vec3 getIntersectionColor(Ray ray);
 };
-

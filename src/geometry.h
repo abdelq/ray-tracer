@@ -9,24 +9,24 @@ class Material;
 class Geometry
 {
 public:
-	Material* material;
+    Material* material;
     glm::mat4 transform;
     glm::mat4 inverseTransform;
-    
+
     Geometry() :
-        material(NULL), transform(glm::mat4()), inverseTransform(glm::mat4()) {}
+        material(nullptr), transform(glm::mat4()), inverseTransform(glm::mat4()) {}
     virtual ~Geometry() {}
-    
-	// retourne si oui ou non le rayon intersecte la géométrie.
-	// Si il y a intersection, toutes ses informations sont insérées dans inter.
-	virtual bool closestIntersection(Ray ray, Intersection& inter) = 0;
+
+    // retourne si oui ou non le rayon intersecte la géométrie.
+    // Si il y a intersection, toutes ses informations sont insérées dans inter.
+    virtual bool closestIntersection(Ray ray, Intersection& inter) = 0;
 };
 
 class Sphere : public Geometry
 {
 public:
     Sphere() {}
-	bool closestIntersection(Ray ray, Intersection& inter);
+    bool closestIntersection(Ray ray, Intersection& inter);
 };
 
 class Plane : public Geometry

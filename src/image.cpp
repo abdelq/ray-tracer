@@ -17,7 +17,6 @@ Image::Image(unsigned int in_nbPixelsX, unsigned int in_nbPixelsY) {
     }
 }
 
-
 Image::Image(string filename) {
     unsigned error = lodepng::decode(data, nbPixelsX, nbPixelsY, filename.c_str());
     if(error) {
@@ -25,16 +24,14 @@ Image::Image(string filename) {
     }
 }
 
-
 vec3 Image::get(unsigned int x, unsigned int y) {
     if(x >= nbPixelsX || y >= nbPixelsY) {cout << "Image::get: Out of range." << endl;}
     return vec3(
                 data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 0 ]/255.f,
-                data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 1 ]/255.f,
-                data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ]/255.f
-                );
+            data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 1 ]/255.f,
+            data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ]/255.f
+            );
 }
-
 
 void Image::set(unsigned int x, unsigned int y, vec3 color) {
     if(x >= nbPixelsX || y >= nbPixelsY) {cout << "Image::set: Out of range." << endl;}
@@ -43,7 +40,6 @@ void Image::set(unsigned int x, unsigned int y, vec3 color) {
     data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ] = (unsigned char)(255.f*clamp(color.b, 0.0f, 1.0f));
     data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 3 ] = 255;
 }
-
 
 void Image::saveToFile(string filename) {
     unsigned error = lodepng::encode(filename.c_str(), data, nbPixelsX, nbPixelsY);

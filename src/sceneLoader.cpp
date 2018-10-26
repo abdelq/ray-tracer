@@ -13,7 +13,6 @@
 using namespace glm;
 using namespace std;
 
-
 SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
     scene(scene)
 {
@@ -22,7 +21,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
     size_t pos = sceneFilename.find_last_of("/\\");
     if (pos==string::npos) {pos=sceneFilename.size();}
     string scenePath = sceneFilename.substr(0,pos);
-    
+
     ifstream sceneFile(sceneFilename);
     if(!sceneFile.is_open()) {
         cout << "Cannot open scene file " << sceneFilename << endl;
@@ -30,7 +29,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
     }
     while(getline(sceneFile, line)) {
         cout << "--------------------" << endl;
-        
+
         auto backR = line.find('\r');
         if(backR != string::npos) {line.erase(backR);}
 
@@ -39,13 +38,13 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
         lineStream.str(line);
         getline(lineStream, elementType, ' ');
         elementTypesEncountered.insert(elementType);
-        
+
         params.clear();
         while(getNextParam()) {
             params.emplace(paramName, paramVal);
         }
 
-//==============================================================================
+        //==============================================================================
         if(elementType=="material") {
             if(!allMandatoryParamsSpecified({"type", "name"})) {continue;}
             Material* mat = NULL;
@@ -112,7 +111,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
             }
             scene.materials.emplace(mat->name, mat);
         }
-//==============================================================================
+        //==============================================================================
         else if(elementType=="texture") {
             if(!allMandatoryParamsSpecified({"type", "name"})) {continue;}
             Texture* tex = NULL;
@@ -149,7 +148,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
             }
             scene.textures.emplace(tex->name, tex);
         }
-//==============================================================================
+        //==============================================================================
         else if(elementType=="geometry") {
             if(!allMandatoryParamsSpecified({"type", "material"})) {continue;}
             Geometry* geo = NULL;
@@ -176,7 +175,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
             }
             scene.geometries.push_back(geo);
         }
-//==============================================================================
+        //==============================================================================
         else if(elementType=="light") {
             if(!allMandatoryParamsSpecified({"type", "color"})) {continue;}
             Light* light = NULL;
@@ -225,7 +224,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
             }
             scene.lights.push_back(light);
         }
-//==============================================================================
+        //==============================================================================
         else if(elementType=="camera") {
             if(!allMandatoryParamsSpecified({"eye", "lookAt", "up", "fov"})) {continue;}
             if(getParam("eye")) {
@@ -246,7 +245,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
             scene.cam.right = normalize(cross(scene.cam.lookAt, scene.cam.up));
             scene.cam.up = cross(scene.cam.right, scene.cam.lookAt);
         }
-//==============================================================================
+        //==============================================================================
         else if(elementType=="scene") {
             if(!allMandatoryParamsSpecified({"maxRecursionLevel"})) {continue;}
             if(getParam("backgroundColor")) {
@@ -262,7 +261,7 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
                 scene.jittered = (paramVal=="true");
             }
         }
-//==============================================================================
+        //==============================================================================
         else if(elementType=="output") {
             if(!allMandatoryParamsSpecified({})) {continue;}
             if(getParam("imageSize")) {
@@ -270,16 +269,16 @@ SceneLoader::SceneLoader(Scene& scene, string sceneFilename):
                 scene.outputImage = Image(size.x, size.y);
             }
         }
-//==============================================================================
+        //==============================================================================
 
     }
-    
+
     // verify mandatory elements
     if(elementTypesEncountered.find("camera") == elementTypesEncountered.end()) {
         cout << "Camera info not specified in scene file, expect unexpected behavior." << endl; }
     if(elementTypesEncountered.find("output") == elementTypesEncountered.end()) {
         cout << "Output info not specified in scene file, expect unexpected behavior." << endl; }
-    
+
     sceneFile.close();
 }
 
@@ -340,22 +339,22 @@ vec3 SceneLoader::stringToVec3(string str) {
     stringstream ss(str);
     string word;
     float x, y, z;
-    
+
     word = ss.get(); // (
     if(word != "(") {cout << errorMsg << endl; return vec3(0);}
-    
+
     getline(ss, word, ','); // x
     if(ss.fail()) {cout << errorMsg << endl; return vec3(0);}
     x = (float) atof(word.c_str());
-    
+
     getline(ss, word, ','); // y
     if(ss.fail()) {cout << errorMsg << endl; return vec3(0);}
     y = (float) atof(word.c_str());
-    
+
     getline(ss, word, ')'); // z
     if(ss.fail()) {cout << errorMsg << endl; return vec3(0);}
     z = (float) atof(word.c_str());
-    
+
     return vec3(x,y,z);
 }
 
@@ -365,18 +364,18 @@ uvec2 SceneLoader::stringToUvec2(string str) {
     stringstream ss(str);
     string word;
     int x, y;
-    
+
     word = ss.get(); // (
     if(word != "(") {cout << errorMsg << endl; return uvec2(0);}
-    
+
     getline(ss, word, ','); // x
     if(ss.fail()) {cout << errorMsg << endl; return uvec2(0);}
     x = atoi(word.c_str());
-    
+
     getline(ss, word, ')'); // y
     if(ss.fail()) {cout << errorMsg << endl; return uvec2(0);}
     y = atoi(word.c_str());
-    
+
     return uvec2(x,y);
 }
 
@@ -385,7 +384,7 @@ mat4 SceneLoader::transformStringToMat4(string str) {
     string mat, word;
     char temp[3];
     mat4 totalTransform = mat4();
-    
+
     while(getline(ss, mat, '*')) {
         ssMat.clear();
         ssMat.str(mat);
@@ -444,10 +443,3 @@ mat4 SceneLoader::transformStringToMat4(string str) {
     }
     return totalTransform;
 }
-
-
-
-
-
-
-

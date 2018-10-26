@@ -15,4 +15,3 @@ typedef glm::float32_t decimal;
 #define INFINITY (1e300)
 #endif
 #define EPSILON 1e-5
-
