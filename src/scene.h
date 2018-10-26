@@ -29,7 +29,7 @@ public:
     std::map<std::string, Texture*> textures;
     std::map<std::string, Material*> materials;
     
-	// image a remplir, qui sera ensuite sauvegardée au format png.
+	// image a remplir, qui sera ensuite sauvegardÃ©e au format png.
     Image outputImage;
 
     void render();    

@@ -21,7 +21,7 @@ vec3 TextureImageFile::getColor(vec2 uv)
 	}
 	else {
 		// TODO
-		// faire correspondre les coordonnées UV dans [0,1]x[0,1] avec les pixels de l'image [0, image.getNbPixelsX()]x[0, image.getNbPixelsY()].
+		// faire correspondre les coordonnÃ©es UV dans [0,1]x[0,1] avec les pixels de l'image [0, image.getNbPixelsX()]x[0, image.getNbPixelsY()].
 		// attention de ne pas demander de pixels de l'image qui n'existent pas!
 		// on peut obtenir la valeur des pixels de l'image avec image.get(x, y).
 	}

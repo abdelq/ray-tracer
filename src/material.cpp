@@ -14,34 +14,34 @@ vec3 MaterialUniform::shade(Intersection, Scene&)
 
 vec3 MaterialLambert::shade(Intersection inter, Scene& scene)
 {
-	// À COMPLÉTER
+	// Ã€ COMPLÃ‰TER
 	return vec3(0);
 }
 
 
 vec3 MaterialLambertTextured::shade(Intersection inter, Scene& scene)
 {
-	// À COMPLÉTER
+	// Ã€ COMPLÃ‰TER
 	return vec3(0);
 }
 
 
 vec3 MaterialPhong::shade(Intersection inter, Scene& scene)
 {
-	// À COMPLÉTER
+	// Ã€ COMPLÃ‰TER
 	return vec3(0);
 }
 
 
 vec3 MaterialReflective::shade(Intersection inter, Scene &scene)
 {
-	// À COMPLÉTER
+	// Ã€ COMPLÃ‰TER
 	return vec3(0);
 }
 
 
 vec3 MaterialRefractive::shade(Intersection inter, Scene &scene)
 {
-	// À COMPLÉTER
+	// Ã€ COMPLÃ‰TER
 	return vec3(0);
 }

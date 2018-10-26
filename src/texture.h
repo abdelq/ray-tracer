@@ -10,7 +10,7 @@ public:
     
     Texture() : name() {}    
 
-	// retourne la couleur de la texture pour des coordonnées UV données.
+	// retourne la couleur de la texture pour des coordonnÃ©es UV donnÃ©es.
     virtual glm::vec3 getColor(glm::vec2 uv) = 0;
 };
 

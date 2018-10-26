@@ -10,11 +10,11 @@ public:
     std::string name;
     
     Material() : name("") {}
-	// méthode principale des matériaux, retourne la couleur calculée pour une intersection donnée en utilisant les informations de la scene (e.g. les lumières).
+	// mÃ©thode principale des matÃ©riaux, retourne la couleur calculÃ©e pour une intersection donnÃ©e en utilisant les informations de la scene (e.g. les lumiÃ¨res).
     virtual glm::vec3 shade(Intersection inter, Scene& scene) = 0;
 };
 
-// retourne une couleur constante sans se préoccuper de l'éclairage réel.
+// retourne une couleur constante sans se prÃ©occuper de l'Ã©clairage rÃ©el.
 class MaterialUniform : public Material
 {
 public:
@@ -26,7 +26,7 @@ public:
 };
 
 
-// matériau Lambertien avec albedo diffus constant.
+// matÃ©riau Lambertien avec albedo diffus constant.
 class MaterialLambert : public Material
 {
 public:
@@ -38,7 +38,7 @@ public:
 };
 
 
-// matériau Lambertien avec albedo diffus pris d'une texture.
+// matÃ©riau Lambertien avec albedo diffus pris d'une texture.
 class MaterialLambertTextured : public Material
 {
 public:
@@ -50,7 +50,7 @@ public:
 };
 
 
-// Lambertien + BlinnPhong spéculaire + ambiant
+// Lambertien + BlinnPhong spÃ©culaire + ambiant
 class MaterialPhong : public Material
 {
 public:
@@ -63,12 +63,12 @@ public:
 };
 
 
-// %réflection + %ambiant
+// %rÃ©flection + %ambiant
 class MaterialReflective : public Material
 {
 public:
     glm::vec3 ambientColor;
-    decimal reflectiveness; // dans [0,1], portion de la lumière réfléchie.
+    decimal reflectiveness; // dans [0,1], portion de la lumiÃ¨re rÃ©flÃ©chie.
 
     MaterialReflective() :
         ambientColor(glm::vec3(0)), reflectiveness(0) {}
@@ -76,12 +76,12 @@ public:
 };
 
 
-// %réfraction + %ambiant
+// %rÃ©fraction + %ambiant
 class MaterialRefractive : public Material
 {
 public:
     glm::vec3 ambientColor;
-    decimal refractiveness; // dans [0,1], portion de la lumière réfractée.
+    decimal refractiveness; // dans [0,1], portion de la lumiÃ¨re rÃ©fractÃ©e.
     decimal refractiveIndex;
 
     MaterialRefractive() :
