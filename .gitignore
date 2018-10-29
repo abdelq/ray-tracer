@@ -1,2 +1,4 @@
+build/
+
 # Qt Creator
 *.pro.user
