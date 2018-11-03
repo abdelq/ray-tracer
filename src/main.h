@@ -7,11 +7,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/constants.hpp"
 
-// typedef pour matcher le type utiliser par GLM
-typedef glm::float32_t decimal;
+typedef glm::float64 decimal;
 
 #define PI (glm::pi<decimal>())
-#ifndef INFINITY
-#define INFINITY (1e300)
-#endif
-#define EPSILON 1e-5
+#define INFINITY (std::numeric_limits<decimal>::infinity())
+#define EPSILON (std::numeric_limits<decimal>::epsilon())

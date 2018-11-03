@@ -28,7 +28,7 @@ void Scene::render()
     //Pour chaque pixel, on détermine le centre du pixel puis on lance un rayon à travers le centre.
     for(unsigned int i=0; i<outputImage.getNbPixelsX(); i++) {
         for(unsigned int j=0; j<outputImage.getNbPixelsY(); j++) {
-            vec3 pixelCenter = cam.eye
+            dvec3 pixelCenter = cam.eye
                     + cam.imageDist*cam.lookAt
                     - imageHalfWidth * cam.right
                     - imageHalfHeight * cam.up
@@ -69,7 +69,7 @@ decimal Scene::getClosestIntersection(Ray ray, Intersection& closestIntersection
     return minT;
 }
 
-vec3 Scene::getIntersectionColor(Ray ray)
+dvec3 Scene::getIntersectionColor(Ray ray)
 {
     // intersect scene
     Intersection closestIntersection;

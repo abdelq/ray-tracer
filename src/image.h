@@ -21,8 +21,8 @@ public:
     // lorsqu'on utilise les pixels, le pixel 0 est en bas à gauche, puis on va
     // vers la droite pour couvrir la rangée du bas, puis on monte rangée par rangée.
     // on utilise 3 channels (r,g,b), chacun est un float dans [0,1].
-    glm::vec3 get(unsigned int x, unsigned int y);
-    void set(unsigned int x, unsigned int y, glm::vec3 color);
+    glm::dvec3 get(unsigned int x, unsigned int y);
+    void set(unsigned int x, unsigned int y, glm::dvec3 color);
     void saveToFile(std::string filename);
     unsigned int getNbPixelsX() {return nbPixelsX;}
     unsigned int getNbPixelsY() {return nbPixelsY;}

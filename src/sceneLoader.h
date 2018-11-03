@@ -22,7 +22,7 @@ public:
     void unknownParameter();
     bool knownMaterial();
     bool knownTexture();
-    glm::vec3 stringToVec3(std::string str); // (x,y,z) -> vec3
+    glm::dvec3 stringToVec3(std::string str); // (x,y,z) -> dvec3
     glm::uvec2 stringToUvec2(std::string str); // (x,y) -> uvec2
-    glm::mat4 transformStringToMat4(std::string str);
+    glm::dmat4 transformStringToMat4(std::string str);
 };

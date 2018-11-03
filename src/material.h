@@ -11,29 +11,29 @@ public:
 
     Material() : name("") {}
     // méthode principale des matériaux, retourne la couleur calculée pour une intersection donnée en utilisant les informations de la scene (e.g. les lumières).
-    virtual glm::vec3 shade(Intersection inter, Scene& scene) = 0;
+    virtual glm::dvec3 shade(Intersection inter, Scene& scene) = 0;
 };
 
 // retourne une couleur constante sans se préoccuper de l'éclairage réel.
 class MaterialUniform : public Material
 {
 public:
-    glm::vec3 color;
+    glm::dvec3 color;
 
     MaterialUniform() :
-        color(glm::vec3(0)) {}
-    glm::vec3 shade(Intersection inter, Scene& scene);
+        color(glm::dvec3(0)) {}
+    glm::dvec3 shade(Intersection inter, Scene& scene);
 };
 
 // matériau Lambertien avec albedo diffus constant.
 class MaterialLambert : public Material
 {
 public:
-    glm::vec3 albedo;
+    glm::dvec3 albedo;
 
     MaterialLambert() :
-        albedo(glm::vec3(0)) {}
-    glm::vec3 shade(Intersection inter, Scene& scene);
+        albedo(glm::dvec3(0)) {}
+    glm::dvec3 shade(Intersection inter, Scene& scene);
 };
 
 // matériau Lambertien avec albedo diffus pris d'une texture.
@@ -44,42 +44,42 @@ public:
 
     MaterialLambertTextured(Texture* tex) :
         albedoTexture(tex) {}
-    glm::vec3 shade(Intersection inter, Scene& scene);
+    glm::dvec3 shade(Intersection inter, Scene& scene);
 };
 
 // Lambertien + BlinnPhong spéculaire + ambiant
 class MaterialPhong : public Material
 {
 public:
-    glm::vec3 diffuseAlbedo, specularAlbedo, ambientColor;
+    glm::dvec3 diffuseAlbedo, specularAlbedo, ambientColor;
     decimal shininess;
 
     MaterialPhong() :
-        diffuseAlbedo(glm::vec3(0)), specularAlbedo(glm::vec3(0)), ambientColor(glm::vec3(0)), shininess(0) {}
-    glm::vec3 shade(Intersection inter, Scene& scene);
+        diffuseAlbedo(glm::dvec3(0)), specularAlbedo(glm::dvec3(0)), ambientColor(glm::dvec3(0)), shininess(0) {}
+    glm::dvec3 shade(Intersection inter, Scene& scene);
 };
 
 // %réflection + %ambiant
 class MaterialReflective : public Material
 {
 public:
-    glm::vec3 ambientColor;
+    glm::dvec3 ambientColor;
     decimal reflectiveness; // dans [0,1], portion de la lumière réfléchie.
 
     MaterialReflective() :
-        ambientColor(glm::vec3(0)), reflectiveness(0) {}
-    glm::vec3 shade(Intersection inter, Scene& scene);
+        ambientColor(glm::dvec3(0)), reflectiveness(0) {}
+    glm::dvec3 shade(Intersection inter, Scene& scene);
 };
 
 // %réfraction + %ambiant
 class MaterialRefractive : public Material
 {
 public:
-    glm::vec3 ambientColor;
+    glm::dvec3 ambientColor;
     decimal refractiveness; // dans [0,1], portion de la lumière réfractée.
     decimal refractiveIndex;
 
     MaterialRefractive() :
-        ambientColor(glm::vec3(0)), refractiveness(0), refractiveIndex(1) {}
-    glm::vec3 shade(Intersection inter, Scene& scene);
+        ambientColor(glm::dvec3(0)), refractiveness(0), refractiveIndex(1) {}
+    glm::dvec3 shade(Intersection inter, Scene& scene);
 };

@@ -20,7 +20,7 @@ public:
 
     Camera cam;
     int maxRecursionLevel;
-    glm::vec3 backgroundColor;
+    glm::dvec3 backgroundColor;
     unsigned int supersampleLevel;
     bool jittered;
 
@@ -35,5 +35,5 @@ public:
     void render();
     void saveToFile(std::string filename);
     decimal getClosestIntersection(Ray ray, Intersection& closestIntersection);
-    glm::vec3 getIntersectionColor(Ray ray);
+    glm::dvec3 getIntersectionColor(Ray ray);
 };

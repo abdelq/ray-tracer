@@ -24,20 +24,20 @@ Image::Image(string filename) {
     }
 }
 
-vec3 Image::get(unsigned int x, unsigned int y) {
+dvec3 Image::get(unsigned int x, unsigned int y) {
     if(x >= nbPixelsX || y >= nbPixelsY) {cout << "Image::get: Out of range." << endl;}
-    return vec3(
+    return dvec3(
                 data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 0 ]/255.f,
             data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 1 ]/255.f,
             data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ]/255.f
             );
 }
 
-void Image::set(unsigned int x, unsigned int y, vec3 color) {
+void Image::set(unsigned int x, unsigned int y, dvec3 color) {
     if(x >= nbPixelsX || y >= nbPixelsY) {cout << "Image::set: Out of range." << endl;}
-    data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 0 ] = (unsigned char)(255.f*clamp(color.r, 0.0f, 1.0f));
-    data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 1 ] = (unsigned char)(255.f*clamp(color.g, 0.0f, 1.0f));
-    data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ] = (unsigned char)(255.f*clamp(color.b, 0.0f, 1.0f));
+    data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 0 ] = (unsigned char)(255.*clamp(color.r, 0.0, 1.0));
+    data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 1 ] = (unsigned char)(255.*clamp(color.g, 0.0, 1.0));
+    data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ] = (unsigned char)(255.*clamp(color.b, 0.0, 1.0));
     data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 3 ] = 255;
 }
 

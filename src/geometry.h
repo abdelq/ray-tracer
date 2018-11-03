@@ -10,11 +10,11 @@ class Geometry
 {
 public:
     Material* material;
-    glm::mat4 transform;
-    glm::mat4 inverseTransform;
+    glm::dmat4 transform;
+    glm::dmat4 inverseTransform;
 
     Geometry() :
-        material(nullptr), transform(glm::mat4()), inverseTransform(glm::mat4()) {}
+        material(nullptr), transform(glm::dmat4()), inverseTransform(glm::dmat4()) {}
     virtual ~Geometry() {}
 
     // retourne si oui ou non le rayon intersecte la géométrie.

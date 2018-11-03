@@ -6,13 +6,13 @@
 using namespace glm;
 using namespace std;
 
-vec3 TextureCheckerboard::getColor(vec2 uv)
+dvec3 TextureCheckerboard::getColor(dvec2 uv)
 {
-    uv = floor(uv * vec2(nbSquaresX, nbSquaresY));
+    uv = floor(uv * dvec2(nbSquaresX, nbSquaresY));
     return (int(uv.x+uv.y) % 2) == 0 ? color1 : color2;
 }
 
-vec3 TextureImageFile::getColor(vec2 uv)
+dvec3 TextureImageFile::getColor(dvec2 uv)
 {
     if (bilinear) {
         // TODO
@@ -24,5 +24,5 @@ vec3 TextureImageFile::getColor(vec2 uv)
         // attention de ne pas demander de pixels de l'image qui n'existent pas!
         // on peut obtenir la valeur des pixels de l'image avec image.get(x, y).
     }
-    return vec3(0);
+    return dvec3(0);
 }

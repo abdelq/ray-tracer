@@ -12,20 +12,20 @@ bool Sphere::closestIntersection(Ray ray, Intersection& inter)
 
 bool Plane::closestIntersection(Ray ray, Intersection& inter)
 {
-    vec3 p = ray.origin;
-    vec3 d = ray.direction;
+    dvec3 p = ray.origin;
+    dvec3 d = ray.direction;
 
     decimal minT = INFINITY, t;
-    vec3 tempP;
+    dvec3 tempP;
 
     if(d.y != 0) {
         t = (0-p.y)/d.y;
         tempP = p + t*d;
         if(t > 0 && t < minT) {
             minT = t;
-            inter.normal = vec3(0,1,0);
+            inter.normal = dvec3(0,1,0);
             if(dot(inter.normal,ray.direction)>0) inter.normal = -inter.normal;
-            inter.uv = vec2(mod<decimal>(tempP.x,1), mod<decimal>(-tempP.z,1));
+            inter.uv = dvec2(mod<decimal>(tempP.x,1), mod<decimal>(-tempP.z,1));
         }
     }
     inter.position = p + minT*d;
