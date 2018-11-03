@@ -26,11 +26,9 @@ Image::Image(string filename) {
 
 dvec3 Image::get(unsigned int x, unsigned int y) {
     if(x >= nbPixelsX || y >= nbPixelsY) {cout << "Image::get: Out of range." << endl;}
-    return dvec3(
-                data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 0 ]/255.f,
-            data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 1 ]/255.f,
-            data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ]/255.f
-            );
+    return dvec3(data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 0 ],
+                 data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 1 ],
+                 data[ 4*(nbPixelsX*(nbPixelsY-y-1) + x) + 2 ]) / 255.;
 }
 
 void Image::set(unsigned int x, unsigned int y, dvec3 color) {

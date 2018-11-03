@@ -383,7 +383,7 @@ dmat4 SceneLoader::transformStringToMat4(string str) {
     stringstream ss(str), ssMat;
     string mat, word;
     char temp[3];
-    dmat4 totalTransform = dmat4();
+    dmat4 totalTransform = dmat4(1);
 
     while(getline(ss, mat, '*')) {
         ssMat.clear();
@@ -393,52 +393,52 @@ dmat4 SceneLoader::transformStringToMat4(string str) {
         if(word == "tr") {
             getline(ssMat, word);
             dvec3 vec = stringToVec3(word);
-            totalTransform = totalTransform * glm::translate(dmat4(), vec);
+            totalTransform = totalTransform * glm::translate(dmat4(1), vec);
         } else if(word == "sh") {
             string errorMsg = "Error in shearing parameter.";
             ssMat.get(); // (
             getline(ssMat, word, ',');
-            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(); }
+            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(1); }
             string axis = word;
             getline(ssMat, word, ','); // arg1
-            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(); }
+            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(1); }
             decimal arg1 = atof(word.c_str());
             getline(ssMat, word, ')'); // arg2
-            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(); }
+            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(1); }
             decimal arg2 = atof(word.c_str());
             if(axis=="x") {
-                totalTransform = totalTransform * glm::shearX3D(dmat4(), arg1, arg2);
+                totalTransform = totalTransform * glm::shearX3D(dmat4(1), arg1, arg2);
             } else if(axis=="y") {
-                totalTransform = totalTransform * glm::shearY3D(dmat4(), arg1, arg2);
+                totalTransform = totalTransform * glm::shearY3D(dmat4(1), arg1, arg2);
             } else if(axis=="z") {
-                totalTransform = totalTransform * glm::shearZ3D(dmat4(), arg1, arg2);
+                totalTransform = totalTransform * glm::shearZ3D(dmat4(1), arg1, arg2);
             } else {
-                cout << errorMsg << endl; return dmat4();
+                cout << errorMsg << endl; return dmat4(1);
             }
         } else if(word == "sc") {
             getline(ssMat, word);
             dvec3 vec = stringToVec3(word);
-            totalTransform = totalTransform * glm::scale(dmat4(), vec);
+            totalTransform = totalTransform * glm::scale(dmat4(1), vec);
         } else if(word == "ro") {
             string errorMsg = "Error in rotation parameter.";
             ssMat.get(); // (
             getline(ssMat, word, ',');
-            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(); }
+            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(1); }
             string axis = word;
             getline(ssMat, word, ','); // angle
-            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(); }
-            decimal angle = PI/180.f*atof(word.c_str());
+            if(ssMat.fail()) { cout << errorMsg << endl; return dmat4(1); }
+            decimal angle = PI/180*atof(word.c_str());
             if(axis=="x") {
-                totalTransform = totalTransform * glm::rotate(dmat4(), angle, dvec3(1,0,0));
+                totalTransform = totalTransform * glm::rotate(dmat4(1), angle, dvec3(1,0,0));
             } else if(axis=="y") {
-                totalTransform = totalTransform * glm::rotate(dmat4(), angle, dvec3(0,1,0));
+                totalTransform = totalTransform * glm::rotate(dmat4(1), angle, dvec3(0,1,0));
             } else if(axis=="z") {
-                totalTransform = totalTransform * glm::rotate(dmat4(), angle, dvec3(0,0,1));
+                totalTransform = totalTransform * glm::rotate(dmat4(1), angle, dvec3(0,0,1));
             } else {
-                cout << errorMsg << endl; return dmat4();
+                cout << errorMsg << endl; return dmat4(1);
             }
         } else {
-            cout << "Unknown transformation type \"" << word << "\"." << endl; return dmat4();
+            cout << "Unknown transformation type \"" << word << "\"." << endl; return dmat4(1);
         }
     }
     return totalTransform;

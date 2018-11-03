@@ -14,7 +14,7 @@ public:
     glm::dmat4 inverseTransform;
 
     Geometry() :
-        material(nullptr), transform(glm::dmat4()), inverseTransform(glm::dmat4()) {}
+        material(nullptr), transform(glm::dmat4(1)), inverseTransform(glm::inverse(glm::dmat4(1))) {}
     virtual ~Geometry() {}
 
     // retourne si oui ou non le rayon intersecte la géométrie.
