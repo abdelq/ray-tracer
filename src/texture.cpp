@@ -15,14 +15,15 @@ dvec3 TextureCheckerboard::getColor(dvec2 uv)
 dvec3 TextureImageFile::getColor(dvec2 uv)
 {
     if (bilinear) {
-        // TODO
-        // filtrage bilineaire
+        decimal x = abs(uv.x) * (image.getNbPixelsX()-1),
+                y = abs(uv.y) * (image.getNbPixelsY()-1);
+        unsigned int xi = unsigned(x), yi = unsigned(y);
+        decimal tx = x - xi, ty = y - yi;
+
+        return (image.get(xi, yi)   * (1 - tx) + image.get(xi+1, yi)   * tx) * (1 - ty) +
+               (image.get(xi, yi+1) * (1 - tx) + image.get(xi+1, yi+1) * tx) * ty;
     }
-    else {
-        // TODO
-        // faire correspondre les coordonnées UV dans [0,1]x[0,1] avec les pixels de l'image [0, image.getNbPixelsX()]x[0, image.getNbPixelsY()].
-        // attention de ne pas demander de pixels de l'image qui n'existent pas!
-        // on peut obtenir la valeur des pixels de l'image avec image.get(x, y).
-    }
-    return dvec3(0);
+
+    return image.get(unsigned(clamp(mod<decimal>(uv.x, 1) * (image.getNbPixelsX()-1), 0., image.getNbPixelsX()-1.)),
+                     unsigned(clamp(mod<decimal>(uv.y, 1) * (image.getNbPixelsY()-1), 0., image.getNbPixelsY()-1.)));
 }

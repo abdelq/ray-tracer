@@ -11,4 +11,4 @@ typedef glm::float64 decimal;
 
 #define PI (glm::pi<decimal>())
 #define INFINITY (std::numeric_limits<decimal>::infinity())
-#define EPSILON (std::numeric_limits<decimal>::epsilon())
+#define EPSILON (std::numeric_limits<glm::float32>::epsilon())
